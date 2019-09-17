@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import { axiosWithCookies } from '../functions/axiosWithCookies';
 
 const Dashboard = props => {
     const [users, setUsers] = useState([]);
     console.log(users);
 
     useEffect(() => {
-        Axios
+        axiosWithCookies()
             .get('http://localhost:7200/api/users')
             .then(res => setUsers(res.data))
-            .catch(err => alert(err));
+            .catch(err => console.log(err));
     }, []);
 
     return (

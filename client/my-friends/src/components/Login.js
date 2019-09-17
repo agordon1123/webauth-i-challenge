@@ -21,8 +21,9 @@ const Login = props => {
         e.preventDefault();
         Axios
             .post('http://localhost:7200/api/login', credentials)
-            .then(() => props.history.push('/dashboard'))
-            .catch(err => alert(err))
+            // .then(() => props.history.push('/dashboard'))
+            .then(success => console.log(success))
+            .catch(err => console.log(err))
     };
 
     return (

@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
         return db('users')
             .where({ username })
             .first()
-            .then(user => {
+            .then(user => {            
                 if (!user || !bcrypt.compareSync(password, user.password)) {
                     res.status(401).json({ error: 'Invalid credentials' });
                 } else {

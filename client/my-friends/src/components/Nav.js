@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { axiosWithCookies } from '../functions/axiosWithCookies';
 
 const Navigation = () => {
     const [state, setState] = useState({ collapsed: true });
@@ -8,6 +9,13 @@ const Navigation = () => {
     const toggleNavbar = () => {
         setState({ collapsed: !state.collapsed })
     }
+
+    const logout = () => {
+        axiosWithCookies()
+            .get('http://localhost:7200/api/logout')
+            .then(success => console.log(success))
+            .catch(err => console.log(err));
+    };
 
     return (
         <div>
@@ -22,6 +30,10 @@ const Navigation = () => {
 
                         <NavItem>
                             <NavLink className='nav-link' to="/login">Login</NavLink>
+                        </NavItem>
+
+                        <NavItem>
+                            <NavLink className='nav-link' onClick={() => logout()}>Logout</NavLink>
                         </NavItem>
 
                         <NavItem>
