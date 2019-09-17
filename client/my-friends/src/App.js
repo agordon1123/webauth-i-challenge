@@ -1,12 +1,20 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+import { Route } from 'react-router-dom';
 import Login from './components/Login';
+import Landing from './components/Landing';
+import Nav from './components/Nav';
+import Signup from './components/Signup';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello from App.js</h1>
-      <Login />
+      <Nav />
+      <Route exact path='/' component={Landing} />
+      <Route path='/login' render={props => <Login {...props} />} />
+      <Route path='/register' render={props => <Signup {...props} />} />
+      <Route path ='/dashboard' render={props => <Dashboard {...props} />} />
     </div>
   );
 }
